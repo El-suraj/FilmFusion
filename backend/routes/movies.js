@@ -1,4 +1,5 @@
-// backend/routes/movies.js
+// 
+
 const express = require('express');
 const router = express.Router();
 const axios = require('axios'); // We need axios to make requests to TMDB
@@ -8,6 +9,9 @@ const TMDB_API_KEY = process.env.TMDB_API_KEY;
 
 // Middleware to check for TMDB_API_KEY
 router.use((req, res, next) => {
+     // ****  DEBUG LOG HERE ****
+    console.log('DEBUG (movies.js middleware): TMDB_API_KEY value:', TMDB_API_KEY);
+
     if (!TMDB_API_KEY) {
         return res.status(500).json({ message: 'TMDB API Key not configured on the server.' });
     }

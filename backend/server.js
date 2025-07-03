@@ -1,12 +1,15 @@
 // backend/server.js
 const express = require('express');
 const dotenv = require('dotenv');
+
+dotenv.config();
+
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const movieRoutes = require('./routes/movies'); // New import
 
-dotenv.config();
+
 // Add this line temporarily for debugging:
 console.log('TMDB_API_KEY from .env:', process.env.TMDB_API_KEY);
 

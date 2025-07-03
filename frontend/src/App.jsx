@@ -1,51 +1,51 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
-import HomePage from "./pages/Homepage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import MovieDetailPage from "./pages/MovieDetailPage.jsx";
-// import WatchlistPage from "./pages/WatchlistPage";
-// import ProfilePage from "./pages/ProfilePage";
-import AuthProvider from "./contexts/AuthContext.jsx"; // Context for authentication
-import PrivateRoute from "./components/PrivateRoute.jsx"; // For protected routes
+// frontend/src/App.jsx (Illustrative changes)
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './contexts/AuthContext'; // Import AuthProvider and useAuth
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import MovieDetailPage from './pages/MovieDetailPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import FavoritesPage from './pages/FavoritesPage'; // Import FavoritesPage
+
+// PrivateRoute component to protect routes
+const PrivateRoute = ({ children }) => {
+    const { isAuthenticated, loading } = useAuth();
+
+    if (loading) {
+        return <div>Loading authentication...</div>; // Or a spinner
+    }
+
+    return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
 function App() {
-  return (
-    <Router>
-      <AuthProvider>
-        {" "}
-        {/* Wrap app with AuthProvider */}
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/movie/:id" element={<MovieDetailPage />} />
-            {/* Protected Routes */}
-            <Route
-              path="/watchlists"
-              element={
-                <PrivateRoute>
-                  {/* <WatchlistPage /> */}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  {/* <ProfilePage /> */}
-                </PrivateRoute>
-              }
-            />
-            {/* Add more routes as needed */}
-          </Routes>
-        </main>
-      </AuthProvider>
-    </Router>
-  );
+    return (
+        <Router>
+            <AuthProvider> {/* Wrap your entire app with AuthProvider */}
+                <Navbar />
+                <main>
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/movies/:id" element={<MovieDetailPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                        {/* Protected Favorites Route */}
+                        <Route
+                            path="/favorites"
+                            element={
+                                <PrivateRoute>
+                                    <FavoritesPage />
+                                </PrivateRoute>
+                            }
+                        />
+                        {/* Add other routes as needed */}
+                    </Routes>
+                </main>
+            </AuthProvider>
+        </Router>
+    );
 }
 
 export default App;

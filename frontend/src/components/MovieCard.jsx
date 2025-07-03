@@ -1,41 +1,65 @@
-// frontend/src/components/MovieCard.jsx
+// frontend/src/components/MovieCard.jsx (Illustrative changes)
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext'; // Import useAuth
+import api from '../axiosConfig'; // Import your configured axios instance
+import { FaHeart, FaRegHeart } from 'react-icons/fa'; // Example icons (npm install react-icons)
 
-function MovieCard({ movie }) {
-  const POSTER_BASE_URL = 'https://image.tmdb.org/t/p/w200';
-  const posterPath = movie.poster_path ? `${POSTER_BASE_URL}${movie.poster_path}` : 'https://via.placeholder.com/200x300?text=No+Image';
+const MovieCard = ({ movie }) => {
+    const { user, isAuthenticated } = useAuth(); // Get user and auth status
+    const [isFavorited, setIsFavorited] = useState(false); // New state for favorite status
 
-  return (
-    <div style={{
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      padding: '10px',
-      margin: '10px',
-      width: '220px',
-      textAlign: 'center',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-    }}>
-      <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-        <img
-          src={posterPath}
-          alt={movie.title}
-          style={{ width: '100%', height: '300px', objectFit: 'cover', borderRadius: '4px' }}
-        />
-        <h3 style={{ fontSize: '1.1em', margin: '10px 0' }}>{movie.title}</h3>
-        <p style={{ fontSize: '0.9em', color: '#666' }}>
-          Release: {movie.release_date ? movie.release_date.substring(0, 4) : 'N/A'}
-        </p>
-        <p style={{ fontSize: '0.9em', color: '#666' }}>
-          Rating: {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}
-        </p>
-      </Link>
-      {/* Add buttons for favorite/watchlist here later */}
-    </div>
-  );
-}
+    // Function to check if movie is already favorited (run when user/movie changes)
+    useEffect(() => {
+        if (user && user.favoriteMovies && user.favoriteMovies.includes(movie.id)) {
+            setIsFavorited(true);
+        } else {
+            setIsFavorited(false);
+        }
+    }, [user, movie.id]); // Re-run if user or movie changes
+
+    const handleFavoriteToggle = async () => {
+        if (!isAuthenticated) {
+            alert('Please log in to add to favorites!'); // Or redirect to login
+            return;
+        }
+
+        try {
+            if (isFavorited) {
+                // Remove from favorites
+                await api.delete(`/users/favorites/${movie.id}`);
+                setIsFavorited(false);
+                // Optimistically update user's favoriteMovies array in context/localStorage if you want
+                // Or re-fetch user data if context updates are complex
+                alert('Movie removed from favorites!');
+            } else {
+                // Add to favorites
+                await api.post('/users/favorites', { movieId: movie.id });
+                setIsFavorited(true);
+                alert('Movie added to favorites!');
+            }
+            // IMPORTANT: You'll likely want to re-fetch the user's data or update the AuthContext's user state
+            // to reflect the change in favoriteMovies array on successful toggle.
+            // For simplicity, a full re-fetch of user data from /api/auth/me might be easiest after a toggle.
+        } catch (error) {
+            console.error('Error toggling favorite:', error.response?.data?.message || error.message);
+            alert(`Failed to toggle favorite: ${error.response?.data?.message || 'Server error'}`);
+        }
+    };
+
+    return (
+        <div className="movie-card">
+            {/* ... existing movie card content ... */}
+            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+            <h3>{movie.title}</h3>
+            <p>{movie.release_date}</p>
+
+            {isAuthenticated && ( // Only show if authenticated
+                <button onClick={handleFavoriteToggle} className="favorite-button">
+                    {isFavorited ? <FaHeart color="red" /> : <FaRegHeart />}
+                </button>
+            )}
+        </div>
+    );
+};
 
 export default MovieCard;

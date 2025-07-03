@@ -1,16 +1,14 @@
 // backend/server.js
 const express = require('express');
 const dotenv = require('dotenv');
-
-dotenv.config();
-
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
-const movieRoutes = require('./routes/movies'); // New import
+const movieRoutes = require('./routes/movies');
+const userRoutes = require('./routes/userRoutes'); // NEW: Import user routes
 
+dotenv.config();
 
-// Add this line temporarily for debugging:
 console.log('TMDB_API_KEY from .env:', process.env.TMDB_API_KEY);
 
 connectDB();
@@ -24,7 +22,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
-app.use('/api/movies', movieRoutes); // New route mounting
+app.use('/api/movies', movieRoutes);
+app.use('/api/users', userRoutes); // NEW: Use user routes
 
 // Error handling middleware
 app.use((err, req, res, next) => {

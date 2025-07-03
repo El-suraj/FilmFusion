@@ -1,5 +1,5 @@
 // frontend/src/components/MovieCard.jsx (Illustrative changes)
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useAuth } from "../contexts/AuthContext"; // Import useAuth
 import api from "../axiosConfig"; // Import your configured axios instance
 import { FaHeart, FaRegHeart } from "react-icons/fa"; // Example icons (npm install react-icons)

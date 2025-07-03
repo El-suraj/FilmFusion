@@ -1,20 +1,21 @@
-// frontend/src/App.jsx (Illustrative changes)
+// frontend/src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './contexts/AuthContext'; // Import AuthProvider and useAuth
+// CORRECTED IMPORT: Import AuthProvider as default, useAuth as named
+import AuthProvider, { useAuth } from './contexts/AuthContext'; // <--- Change this line
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import MovieDetailPage from './pages/MovieDetailPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import FavoritesPage from './pages/FavoritesPage'; // Import FavoritesPage
+import FavoritesPage from './pages/FavoritesPage';
 
-// PrivateRoute component to protect routes
+// PrivateRoute component to protect routes (no change here)
 const PrivateRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
 
     if (loading) {
-        return <div>Loading authentication...</div>; // Or a spinner
+        return <div>Loading authentication...</div>;
     }
 
     return isAuthenticated ? children : <Navigate to="/login" />;
@@ -23,7 +24,7 @@ const PrivateRoute = ({ children }) => {
 function App() {
     return (
         <Router>
-            <AuthProvider> {/* Wrap your entire app with AuthProvider */}
+            <AuthProvider>
                 <Navbar />
                 <main>
                     <Routes>
@@ -31,7 +32,6 @@ function App() {
                         <Route path="/movies/:id" element={<MovieDetailPage />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
-                        {/* Protected Favorites Route */}
                         <Route
                             path="/favorites"
                             element={
@@ -40,7 +40,6 @@ function App() {
                                 </PrivateRoute>
                             }
                         />
-                        {/* Add other routes as needed */}
                     </Routes>
                 </main>
             </AuthProvider>

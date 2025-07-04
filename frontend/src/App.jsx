@@ -9,6 +9,9 @@ import MovieDetailPage from './pages/MovieDetailPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import FavoritesPage from './pages/FavoritesPage';
+import WatchlistsPage from './pages/WatchlistsPage'; // NEW: Import WatchlistsPage
+import WatchlistDetailPage from './pages/WatchlistDetailPage'; // NEW: Import WatchlistDetailPage
+
 
 // PrivateRoute component to protect routes (no change here)
 const PrivateRoute = ({ children }) => {
@@ -32,11 +35,29 @@ function App() {
                         <Route path="/movies/:id" element={<MovieDetailPage />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/movies/:id" element={<MovieDetailPage />} /> {/* Make sure this exists */}
                         <Route
                             path="/favorites"
                             element={
                                 <PrivateRoute>
                                     <FavoritesPage />
+                                </PrivateRoute>
+                            }
+                        />
+                        {/* NEW: Protected Watchlists Routes */}
+                        <Route
+                            path="/watchlists"
+                            element={
+                                <PrivateRoute>
+                                    <WatchlistsPage />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/watchlists/:id"
+                            element={
+                                <PrivateRoute>
+                                    <WatchlistDetailPage />
                                 </PrivateRoute>
                             }
                         />

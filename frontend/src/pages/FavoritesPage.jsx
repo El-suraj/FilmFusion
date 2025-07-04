@@ -44,7 +44,12 @@ const FavoritesPage = () => {
     }, [isAuthenticated, authLoading, user, navigate]); // Re-fetch when auth status or user changes
 
     if (authLoading || loading) {
-        return <div className="container">Loading favorite movies...</div>; // Or a spinner
+         return (
+        <div className="container">
+            <div className="loading-message">Loading movie details...</div>
+            <div className="loading-spinner"></div> {/* Optional spinner */}
+        </div>
+    );
     }
 
     if (error) {

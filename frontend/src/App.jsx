@@ -11,6 +11,8 @@ import RegisterPage from './pages/RegisterPage';
 import FavoritesPage from './pages/FavoritesPage';
 import WatchlistsPage from './pages/WatchlistsPage'; // NEW: Import WatchlistsPage
 import WatchlistDetailPage from './pages/WatchlistDetailPage'; // NEW: Import WatchlistDetailPage
+import ProfilePage from './pages/ProfilePage'; // NEW: import profilePage 
+import './app.css';
 
 
 // PrivateRoute component to protect routes (no change here)
@@ -58,6 +60,14 @@ function App() {
                             element={
                                 <PrivateRoute>
                                     <WatchlistDetailPage />
+                                </PrivateRoute>
+                            }
+                        />
+                         <Route
+                            path="/profile"
+                            element={
+                                <PrivateRoute>
+                                    <ProfilePage />
                                 </PrivateRoute>
                             }
                         />

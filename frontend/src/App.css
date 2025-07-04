@@ -1,4 +1,461 @@
 /* frontend/src/index.css */
+/* General Body and Font Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Or a Google Font like 'Roboto', 'Open Sans' */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f4f7f6; /* Light gray background */
+    color: #333; /* Default text color */
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff; /* Blue for links */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Container for page content */
+.container {
+    max-width: auto;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #282c34; /* Dark gray */
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand a {
+    color: #61dafb; /* Light blue */
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav li {
+    margin-left: 25px;
+}
+
+.navbar-nav a,
+.navbar-nav .nav-link-button {
+    color: #f0f0f0; /* Light text color */
+    font-size: 1.1em;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background: none; /* For button */
+    border: none; /* For button */
+    cursor: pointer; /* For button */
+}
+
+.navbar-nav a:hover,
+.navbar-nav .nav-link-button:hover {
+    background-color: #444; /* Slightly lighter gray on hover */
+    text-decoration: none;
+}
+
+/* Button Styles (re-usable) */
+.btn {
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Give some space */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Red for delete actions */
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.form-group input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Movie Grid & Card Styles (basic) */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 40px;
+    padding: 20px 0;
+}
+
+.movie-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure cards are same height in a row */
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 300px; /* Fixed height for consistency */
+    object-fit: cover; /* Crop image to fit */
+}
+
+.movie-card-link {
+    color: inherit; /* Inherit text color from parent */
+    text-decoration: none; /* Remove underline */
+    flex-grow: 1; /* Allow link content to grow */
+}
+
+.movie-card-link h3 {
+    font-size: 1.2em;
+    margin: 10px 10px 5px;
+    color: #333;
+}
+
+.movie-card-link p {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0 10px 10px;
+}
+
+.movie-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    background-color: #f0f0f0;
+}
+
+.favorite-button, .add-to-watchlist-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #555;
+    padding: 5px;
+}
+
+.favorite-button:hover, .add-to-watchlist-btn:hover {
+    color: #007bff; /* Change color on hover */
+}
+
+/* Dropdown for Watchlist selection */
+.watchlist-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.watchlist-dropdown-menu {
+    position: absolute;
+    bottom: 100%; /* Position above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    z-index: 100;
+    padding: 5px 0;
+    margin-bottom: 5px; /* Space between button and dropdown */
+}
+
+.watchlist-dropdown-menu .dropdown-item {
+    padding: 8px 15px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+.watchlist-dropdown-menu .dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* Movie Detail Page */
+.movie-detail-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.movie-detail-page .movie-poster {
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.movie-detail-page h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #282c34;
+}
+
+.movie-detail-page p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Review Section */
+.reviews-section {
+    width: 100%;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.review-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.reviews-list {
+    margin-top: 20px;
+}
+
+.review-item {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.review-item p {
+    margin: 5px 0;
+    font-size: 0.95em;
+}
+
+.review-item strong {
+    color: #007bff;
+}
+
+.review-date {
+    font-size: 0.85em;
+    color: #999;
+    text-align: right;
+}
+
+/* Watchlist Pages */
+.watchlist-list, .favorites-list {
+    margin-top: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Larger for list items */
+}
+
+.watchlist-item, .favorite-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+}
+
+.watchlist-item h3 a {
+    color: #333;
+    font-size: 1.4em;
+}
+.watchlist-item h3 a:hover {
+    text-decoration: underline;
+}
+
+.watchlist-item p {
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* Watchlist Detail Page movie items */
+.watchlist-movie-item {
+    position: relative; /* For positioning the remove button */
+}
+
+.watchlist-movie-item .remove-from-watchlist-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(220, 53, 69, 0.8); /* Red with transparency */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.2s ease;
+}
+
+.watchlist-movie-item .remove-from-watchlist-btn:hover {
+    background-color: #dc3545; /* Solid red on hover */
+}
+
+
+/* Modal Styles */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Basic Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px 10px;
+    }
+
+    .navbar-nav {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .navbar-nav li {
+        margin: 0 10px 10px 0;
+    }
+
+    .container {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    .movie-detail-page {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .movie-detail-page .movie-poster {
+        max-width: 250px;
+        margin: 0 auto 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+    .navbar-brand a {
+        font-size: 1.5em;
+    }
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -18,4 +475,54 @@ main {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+}
+/* Basic Loading Spinner CSS */
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #3498db; /* Blue spinner */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto; /* Center it */
+    display: block;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* You can also just use text */
+.loading-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1em;
+    color: #666;
+}
+
+/* General styles for messages */
+.error-message, .success-message, .info-message {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 0.95em;
+}
+
+.error-message {
+    background-color: #ffe6e6; /* Light red */
+    color: #cc0000; /* Dark red text */
+    border: 1px solid #ffb3b3;
+}
+
+.success-message {
+    background-color: #e6ffe6; /* Light green */
+    color: #008000; /* Dark green text */
+    border: 1px solid #b3ffb3;
+}
+
+.info-message {
+    background-color: #e6f7ff; /* Light blue */
+    color: #006699; /* Dark blue text */
+    border: 1px solid #b3e0ff;
 }

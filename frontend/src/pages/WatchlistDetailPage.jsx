@@ -59,7 +59,10 @@ const WatchlistDetailPage = () => {
 
 
     if (authLoading || loading) {
-        return <div className="container">Loading watchlist details...</div>;
+        return<div className="container">
+            <div className="loading-message">Loading WatchLists details...</div>
+            <div className="loading-spinner"></div> {/* Optional spinner */}
+        </div>
     }
 
     if (error) {

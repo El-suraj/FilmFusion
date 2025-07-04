@@ -42,6 +42,16 @@ function Navbar() {
               Watchlists
             </Link>
             <Link
+              to="/favorites"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                marginLeft: "15px",
+              }}
+            >
+             Favorites
+            </Link>
+            <Link
               to="/profile"
               style={{
                 color: "white",

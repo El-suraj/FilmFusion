@@ -52,7 +52,12 @@ function HomePage() {
     }
   };
 
-  if (loading) return <p>Loading movies...</p>;
+  if (loading)  return (
+        <div className="container">
+            <div className="loading-message">Loading movies...</div>
+            <div className="loading-spinner"></div> {/* Optional spinner */}
+        </div>
+    );
   if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
 
   const displayMovies = searchResults.length > 0 ? searchResults : movies;

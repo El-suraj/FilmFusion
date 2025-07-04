@@ -78,7 +78,10 @@ const MovieDetailPage = () => {
 
 
     if (loading) {
-        return <div className="container">Loading movie details...</div>;
+        return <div className="container">
+            <div className="loading-message">Loading movie details...</div>
+            <div className="loading-spinner"></div> {/* Optional spinner */}
+        </div>
     }
 
     if (error) {

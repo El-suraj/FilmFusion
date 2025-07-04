@@ -9,6 +9,8 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const movieRoutes = require('./routes/movies');
 const userRoutes = require('./routes/userRoutes'); // NEW: Import user routes
+const watchlistRoutes = require('./routes/watchlistRoutes'); 
+const reviewRoutes = require('./routes/reviewRoutes');
 
 
 
@@ -27,6 +29,9 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/movies', movieRoutes);
 app.use('/api/users', userRoutes); // NEW: Use user routes
+app.use('/api/watchlists', watchlistRoutes);
+app.use('/api/reviews', reviewRoutes); // NEW: Use review routes
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {

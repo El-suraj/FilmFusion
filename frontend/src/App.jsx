@@ -30,6 +30,7 @@ function App() {
     return (
         <Router>
             <AuthProvider>
+                
                 <Navbar />
                 <main>
                     <Routes>
@@ -73,6 +74,7 @@ function App() {
                         />
                     </Routes>
                 </main>
+              
             </AuthProvider>
         </Router>
     );

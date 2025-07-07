@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import '../app.css';
 
 function Navbar() {
   const { user, logout } = useAuth();
@@ -8,24 +9,31 @@ function Navbar() {
   return (
     <nav
       style={{
-        background: "#333",
+        background: "rgb(4, 21, 37)",
         padding: "10px 20px",
         color: "white",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        borderRadius:"10px",
+        justifySelf: "center",
+        width: "115rem",
+        height: "3.5em",
       }}
+      class="navbar"
     >
+      
       <Link
         to="/"
         style={{ color: "white", textDecoration: "none", fontSize: "1.5em" }}
       >
-        MovieApp
+        <button class="btn">Film Fusion</button>
       </Link>
-      <div>
+      <div class="navbar-nav">
         <Link
           to="/"
-          style={{ color: "white", textDecoration: "none", marginLeft: "15px" }}
+          
+          /*style={{ /*color: "#c53d3d", textDecoration: "none", marginLeft: "15px", fontSize:"1.2em" }}*/
         >
           Home
         </Link>
@@ -33,10 +41,12 @@ function Navbar() {
           <>
             <Link
               to="/watchlists"
+
               style={{
                 color: "white",
                 textDecoration: "none",
                 marginLeft: "15px",
+                fontSize:"1.2em"
               }}
             >
               Watchlists
@@ -44,24 +54,26 @@ function Navbar() {
             <Link
               to="/favorites"
               style={{
-                color: "white",
+                color: "#e42759",
                 textDecoration: "none",
                 marginLeft: "15px",
+                fontSize:"1.2em"
               }}
             >
-             Favorites
+              Favorites
             </Link>
             <Link
               to="/profile"
               style={{
-                color: "white",
+                color: "#e42759",
                 textDecoration: "none",
                 marginLeft: "15px",
+                fontSize:"1.2em"
               }}
             >
               Profile
             </Link>
-            <span style={{ marginLeft: "15px" }}>
+            <span style={{ marginLeft: "15px",fontSize:"1.2em"}}>
               Welcome, {user.username}!
             </span>
             <button
@@ -70,9 +82,10 @@ function Navbar() {
                 marginLeft: "15px",
                 background: "none",
                 border: "1px solid white",
-                color: "white",
+                color: "#e42759",
                 padding: "5px 10px",
                 cursor: "pointer",
+                fontSize:"1.2em"
               }}
             >
               Logout
@@ -82,21 +95,24 @@ function Navbar() {
           <>
             <Link
               to="/login"
-              style={{
-                color: "white",
-                textDecoration: "none",
-                marginLeft: "15px",
-              }}
+              // style={{
+              //   /*color: "#e42759",*/
+              //   textDecoration: "none",
+              //   marginLeft: "15px",
+              //   fontSize:"1.2em"
+              // }}
             >
               Login
             </Link>
             <Link
               to="/register"
-              style={{
-                color: "white",
-                textDecoration: "none",
-                marginLeft: "15px",
-              }}
+              
+              // style={{
+              //   /*color: "#e42759",*/
+              //   textDecoration: "none",
+              //   marginLeft: "20px",
+              //   fontSize:"1.2em"
+              // }}
             >
               Register
             </Link>

@@ -21,13 +21,13 @@ function LoginPage() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div class="form-group">
+      <h2 class="form-group">Login</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
-          <input
+          <input class="form-group"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -43,7 +43,7 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" class="form-group-button">Login</button>
       </form>
       <p>Don't have an account? <a href="/register">Register here</a></p>
     </div>

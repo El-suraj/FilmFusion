@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import api from '../axiosConfig'; // Your configured axios instance
 import { useAuth } from '../contexts/AuthContext';
 import ReviewForm from '../components/ReviewForm'; // NEW: Import ReviewForm
+import { useToast } from '../contexts/ToastContext'; 
 
 const MovieDetailPage = () => {
     const { id } = useParams();
@@ -13,6 +14,7 @@ const MovieDetailPage = () => {
     const [error, setError] = useState(null);
     const [reviews, setReviews] = useState([]); // State for all reviews of this movie
     const [userReview, setUserReview] = useState(null); // State for the current user's review
+    const { showToast } = useToast();
 
     useEffect(() => {
         const fetchMovieAndReviews = async () => {
@@ -98,6 +100,7 @@ const MovieDetailPage = () => {
             <h1>{movie.title}</h1>
             <p><strong>Release Date:</strong> {movie.release_date}</p>
             <p><strong>Overview:</strong> {movie.overview}</p>
+            <p><strong>Popularity : </strong>{movie.popularity}</p>
             <p><strong>Average Rating:</strong> {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</p>
             {/* Add favorite/watchlist buttons here if not already on MovieCard */}
 

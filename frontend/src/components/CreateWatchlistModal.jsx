@@ -60,7 +60,7 @@ const CreateWatchlistModal = ({ onClose, onWatchlistCreated }) => {
                     </div>
                     {error && <p className="error-message">{error}</p>}
                     <div className="modal-actions">
-                        <button type="submit" disabled={loading}>
+                        <button type="submit" disabled={loading} >
                             {loading ? 'Creating...' : 'Create Watchlist'}
                         </button>
                         <button type="button" onClick={onClose} disabled={loading}>

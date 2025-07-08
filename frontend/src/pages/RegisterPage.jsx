@@ -22,8 +22,8 @@ function RegisterPage() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className='form-group'>
+      <h2 id='form-group'>Register</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>

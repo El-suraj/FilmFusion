@@ -22,7 +22,7 @@ function LoginPage() {
 
   return (
     <div class="form-group">
-      <h2 class="form-group">Login</h2>
+      <h2 id="form-group">Login</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
@@ -43,7 +43,7 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit" class="form-group-button">Login</button>
+        <button type="submit" class="">{'Login' || 'logging' }</button>
       </form>
       <p>Don't have an account? <a href="/register">Register here</a></p>
     </div>

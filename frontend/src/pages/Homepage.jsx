@@ -64,7 +64,7 @@ function HomePage() {
 
   return (
     <div>
-      <h1>Welcome to Movie Recommendation App!</h1>
+      <h1>Welcome to Film Fusion ! ! !</h1>
       {user ? (
         <p>Hello, {user.username}! Discover, save, and rate your favorite movies.</p>
       ) : (

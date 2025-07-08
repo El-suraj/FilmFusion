@@ -7,12 +7,21 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #000000; /* Light gray background */
-    color: #333; /* Default text color */
+    color: #ffffff; /* Default text color */
     line-height: 1.6;
     /* border-radius: 2px; */
     justify-content: center;
-    max-width: 150rem;
+    max-width: auto;
     min-width: fit-content;
+    text-align: center;
+}
+main {
+    max-width: auto; /* <-- SET YOUR DESIRED PAGE WIDTH HERE (e.g., 1400px, 1600px) */
+    margin: 20px auto; /*Centers the main content block and provides top/bottom margin */
+    padding: 20px; /*Adds internal padding to the main content */
+    background-color: #121111; /* White background for the content area */
+    border-radius: 8px; /* Slightly more rounded corners for consistency */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 #root{
    /* min-width: 72em; */
@@ -28,7 +37,7 @@ body {
     justify-content: center;
     height: 30em;
     /* padding-top: 5px; */
-    max-width: 150rem;
+    max-width: auto;
     
 }
 
@@ -170,7 +179,7 @@ a:hover {
   width: calc(100% + 4px);
   height:  calc(100% + 4px);
   filter: blur(8px);
-  animation: glowing 20s linear infinite;
+  animation: glowing 30s linear infinite;
   transition: opacity .3s ease-in-out;
   border-radius: 10px;
   opacity: 2;
@@ -194,28 +203,45 @@ a:hover {
 
 .btn-danger {
     background-color: #dc3545; /* Red for delete actions */
+    margin-left: 10px;
+    font-weight: bold;
 }
 
 .btn-danger:hover {
-    background-color: #c82333;
+    background-color: #ef031b;
+    font-size: 1.05em;
 }
+.btn-update{
+    background-color: #002BFF;
+    font-weight: 750;
+}
+.btn-update:hover{
+    background-color: #001998;
+    font-size: 1.05em;
+}
+
+
 
 /* Form Group Styles */
 .form-group {
     margin-bottom: 15px;
     justify-self: center;
-    background-color: #a38080;
+    background-color: #ffffff;
     border-radius: 10px;
-    /* justify-content: center; */
-    /* width: 30rem; */
+    border: 1px solid #000000;
+    align-content: center;
+    width: max-content;
+    padding: 10px;
+    color:#fff;
+
 }
-.from-group h{
+#form-group {
     justify-self: center;
     font-weight: bold;
 }
 
 .form-group label {
-    display: block;
+    /* display: block; */
     margin-bottom: 8px;
     font-weight: bold;
     color: #302b2b;
@@ -226,9 +252,9 @@ a:hover {
 .form-group input[type="password"],
 .form-group input[type="number"],
 .form-group textarea {
-    width: calc(100% - 30px); /* Account for padding and border */
+    width: calc(100% - 20px); /* Account for padding and border */
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 5px;
     font-size: 1em;
 }
@@ -240,10 +266,19 @@ a:hover {
 .form-group input[type="checkbox"] {
     margin-right: 8px;
 }
-.form-group-button{
+.form-group button{
     align-self: center;
-    color: #002BFF;
-    font-size: 1.5rem;
+    /* color: #002BFF; */
+    background-color: #00FFD5;
+    font-size: 1.2rem;
+    justify-self: center;
+    margin-top: 10px;
+    margin-left: 100px;
+   border: 1px solid #000000;
+}
+.form-group button:hover{
+    background-color: #039abc;
+    text-transform: uppercase;
 }
 
 .checkbox-group {
@@ -255,12 +290,12 @@ a:hover {
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 40px; /* This is already 40px, which is a good gap! */
+    gap: 50px; /* This is already 40px, which is a good gap! */
     padding: 20px 0;
 }
 
 .movie-card {
-    background-color: #f9f9f9;
+    background-color: #000000;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -269,16 +304,21 @@ a:hover {
     display: flex;
     flex-direction: column;
     height: 100%; /* Ensure cards are same height in a row */
+    gap: 50px;
+    padding: 5px;
+    margin: 5px;
 }
 
 .movie-card:hover {
     transform: translateY(-5px);
+    font-size: large;
 }
 
 .movie-card img {
     width: 100%;
     height: 300px; /* Fixed height for consistency */
     object-fit: cover; /* Crop image to fit */
+    border-radius: 5px;
 }
 
 .movie-card-link {
@@ -290,12 +330,12 @@ a:hover {
 .movie-card-link h3 {
     font-size: 1.2em;
     margin: 10px 10px 5px;
-    color: #333;
+    color: #ffffff;
 }
 
 .movie-card-link p {
     font-size: 0.9em;
-    color: #666;
+    color: #ffffff;
     margin: 0 10px 10px;
 }
 
@@ -305,6 +345,7 @@ a:hover {
     padding: 10px;
     border-top: 1px solid #eee;
     background-color: #f0f0f0;
+    border-radius: 7px;
 }
 
 .favorite-button, .add-to-watchlist-btn {
@@ -372,7 +413,7 @@ a:hover {
 .movie-detail-page h1 {
     font-size: 2.5em;
     margin-bottom: 10px;
-    color: #282c34;
+    color: #e7f0ff;
 }
 
 .movie-detail-page p {
@@ -386,10 +427,10 @@ a:hover {
     margin-top: 30px;
     border-top: 1px solid #eee;
     padding-top: 20px;
+
 }
 
 .review-form {
-    background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 25px;
@@ -402,7 +443,7 @@ a:hover {
 
 .review-item {
     background-color: #fff;
-    border: 1px solid #eee;
+    border: 1px solid #a83434;
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 15px;
@@ -411,7 +452,9 @@ a:hover {
 
 .review-item p {
     margin: 5px 0;
-    font-size: 0.95em;
+    font-size: 1.2em;
+    color: #000000;
+
 }
 
 .review-item strong {
@@ -483,6 +526,7 @@ a:hover {
 .watchlist-movie-item .remove-from-watchlist-btn:hover {
     background-color: #dc3545; /* Solid red on hover */
 }
+/* Profile Page Styles*/
 
 
 /* Modal Styles */
@@ -500,7 +544,7 @@ a:hover {
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: #1f1c1c;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -511,23 +555,26 @@ a:hover {
 .modal-content h3 {
     margin-top: 0;
     margin-bottom: 20px;
-    color: #333;
+    color: inherit;
     text-align: center;
+    font-size: 1.5em;
 }
 
 .modal-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 10px;
     margin-top: 20px;
 }
-main {
-    max-width: 1900px; /* <-- SET YOUR DESIRED PAGE WIDTH HERE (e.g., 1400px, 1600px) */
-    margin: 20px auto; /*Centers the main content block and provides top/bottom margin */
-    padding: 20px; /*Adds internal padding to the main content */
-    background-color: #fff; /* White background for the content area */
-    border-radius: 8px; /* Slightly more rounded corners for consistency */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+.modal-actions button{
+    background-color: #0f042c;
+    color: #fff;
+}
+.modal-actions button:hover{
+    font-size: 1.1em;
+    background-color: #002BFF;
+    color: #000000;
+    font-weight: 600;
 }
 
 
@@ -622,10 +669,63 @@ code {
     background-color: #e6ffe6; /* Light green */
     color: #008000; /* Dark green text */
     border: 1px solid #b3ffb3;
+    transition-duration: 60s;
 }
 
 .info-message {
     background-color: #e6f7ff; /* Light blue */
     color: #006699; /* Dark blue text */
     border: 1px solid #b3e0ff;
+}
+/* Toast Notification Styles */
+.toast-container {
+    position: fixed;
+    top: 20px; /* Position from the top */
+    right: 20px; /* Position from the right */
+    z-index: 2000; /* Ensure it's above other content */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between multiple toasts */
+}
+
+.toast-notification {
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    opacity: 0; /* Start hidden */
+    transform: translateY(-20px); /* Start slightly above final position */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Animation */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 250px;
+    text-align: center;
+}
+
+.toast-notification.show {
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move to final position */
+}
+
+.toast-notification.hide {
+    opacity: 0; /* Fade out */
+    transform: translateY(-20px); /* Move back up */
+}
+
+
+/* Toast Types */
+.toast-info {
+    background-color: #17a2b8; /* Info blue */
+}
+
+.toast-success {
+    background-color: #28a745; /* Success green */
+}
+
+.toast-error {
+    background-color: #dc3545; /* Error red */
+}
+
+.toast-warning {
+    background-color: #ffc107; /* Warning yellow */
+    color: #333; /* Darker text for warning */
 }

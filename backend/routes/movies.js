@@ -23,6 +23,7 @@ router.use((req, res, next) => {
 // @access  Public
 router.get('/search', async (req, res) => {
     const { query } = req.query; // Get search query from URL parameter
+     const page = parseInt(req.query.page) || 1; // Get 'page' parameter, default to 1
     if (!query) {
         return res.status(400).json({ message: 'Search query is required.' });
     }
@@ -30,10 +31,17 @@ router.get('/search', async (req, res) => {
         const response = await axios.get(`${TMDB_BASE_URL}/search/movie`, {
             params: {
                 api_key: TMDB_API_KEY,
+                language: 'en-US',
                 query: query,
+                page: page, // Pass the requested page number
+                include_adult: false
             },
         });
-        res.json(response.data);
+         res.json({
+            results: response.data.results,
+            page: response.data.page,
+            total_pages: response.data.total_pages
+        });
     } catch (error) {
         console.error('Error searching movies:', error.response?.data?.status_message || error.message);
         res.status(error.response?.status || 500).json({
@@ -47,13 +55,21 @@ router.get('/search', async (req, res) => {
 // @route   GET /api/movies/popular
 // @access  Public
 router.get('/popular', async (req, res) => {
+    //Get age  query parameter, deafult to 1 if not provided
+    const page = parseInt(req.query.page) || 1;
     try {
         const response = await axios.get(`${TMDB_BASE_URL}/movie/popular`, {
             params: {
                 api_key: TMDB_API_KEY,
+                language: 'en-US',
+                page: page
             },
         });
-        res.json(response.data);
+        res.json({
+            results: response.data.results,
+            page: response.data.page,
+            total_pages: response.data.total_pages
+        });
     } catch (error) {
         console.error('Error fetching popular movies:', error.response?.data?.status_message || error.message);
         res.status(error.response?.status || 500).json({

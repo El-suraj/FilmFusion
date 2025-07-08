@@ -3,8 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 // CORRECTED IMPORT: Import AuthProvider as default, useAuth as named
 import AuthProvider, { useAuth } from './contexts/AuthContext'; // <--- Change this line
+import { ToastProvider } from './contexts/ToastContext';
 import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/Homepage';
 import MovieDetailPage from './pages/MovieDetailPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -30,7 +31,7 @@ function App() {
     return (
         <Router>
             <AuthProvider>
-                
+                 <ToastProvider> {/* NEW: Wrap with ToastProvider */}
                 <Navbar />
                 <main>
                     <Routes>
@@ -74,7 +75,7 @@ function App() {
                         />
                     </Routes>
                 </main>
-              
+               </ToastProvider> {/* NEW: Close ToastProvider */}
             </AuthProvider>
         </Router>
     );

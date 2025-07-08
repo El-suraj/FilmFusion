@@ -118,7 +118,7 @@ const ReviewForm = ({ movieId, currentReview, onReviewSubmitted, onReviewDeleted
                 </div>
                 {error && <p className="error-message">{error}</p>}
                 {successMessage && <p className="success-message">{successMessage}</p>}
-                <button type="submit" disabled={loading}>
+                <button type="submit" disabled={loading} className="btn-update">
                     {loading ? 'Submitting...' : (currentReview ? 'Update Review' : 'Submit Review')}
                 </button>
                 {currentReview && ( // Show delete button only if editing an existing review

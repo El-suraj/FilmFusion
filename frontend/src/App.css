@@ -232,7 +232,9 @@ a:hover {
     align-content: center;
     width: max-content;
     padding: 10px;
-    color:#fff;
+    color:#000000;
+    font-family: 'Franklin Gothic condensed', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2em;
 
 }
 #form-group {
@@ -267,18 +269,23 @@ a:hover {
     margin-right: 8px;
 }
 .form-group button{
-    align-self: center;
+    /* align-self: center; */
     /* color: #002BFF; */
     background-color: #00FFD5;
     font-size: 1.2rem;
-    justify-self: center;
+    /* justify-self: center; */
     margin-top: 10px;
-    margin-left: 100px;
-   border: 1px solid #000000;
+    /* margin-right: 50px; */
+    border: 1px solid #000000;
 }
 .form-group button:hover{
     background-color: #039abc;
     text-transform: uppercase;
+}
+.form-group a:hover {
+    color: #207909;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.1em;
 }
 
 .checkbox-group {

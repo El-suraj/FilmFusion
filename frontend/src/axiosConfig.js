@@ -1,29 +1,30 @@
 // frontend/src/axiosConfig.js
-import axios from 'axios';
+import axios from "axios";
 
 // Create a custom Axios instance
 const instance = axios.create({
-    baseURL: import.meta.env.VITE_REACT_APP_BACKEND_URL, // Use your Vite env variable here
-    headers: {
-        'Content-Type': 'application/json',
-    },
+  baseURL: filmfusionsxyz.netlify.app, // Use your Vite env variable here
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
 });
 
 // Request Interceptor: Attach token to every outgoing request if available
 instance.interceptors.request.use(
-    (config) => {
-        const userInfo = localStorage.getItem('userInfo');
-        if (userInfo) {
-            const user = JSON.parse(userInfo);
-            if (user.token) {
-                config.headers.Authorization = `Bearer ${user.token}`;
-            }
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
+  (config) => {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      const user = JSON.parse(userInfo);
+      if (user.token) {
+        config.headers.Authorization = `Bearer ${user.token}`;
+      }
     }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 
 // Optional: Response Interceptor for handling 401/403 errors globally

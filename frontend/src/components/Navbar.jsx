@@ -20,16 +20,16 @@ function Navbar() {
         width: "115rem",
         height: "3.5em",
       }}
-      class="navbar"
+      className="navbar"
     >
       
       <Link
         to="/"
         style={{ color: "white", textDecoration: "none", fontSize: "1.5em" }}
       >
-        <button class="btn">Film Fusion</button>
+        <button className="btn">Film Fusion</button>
       </Link>
-      <div class="navbar-nav">
+      <div className="navbar-nav">
         <Link
           to="/"
           

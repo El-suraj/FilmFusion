@@ -259,6 +259,7 @@ a:hover {
     border: 1px solid #000000;
     border-radius: 5px;
     font-size: 1em;
+    color: #000000;
 }
 
 .form-group textarea {
@@ -735,4 +736,52 @@ code {
 .toast-warning {
     background-color: #ffc107; /* Warning yellow */
     color: #333; /* Darker text for warning */
+}
+
+/* Filter and Sort Controls */
+.filter-sort-controls {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-group label {
+    font-weight: bold;
+    color: #555;
+}
+
+.filter-group select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+    color: #000000;
+}
+
+.filter-group select:hover {
+    border-color: #007bff;
+}
+
+/* Responsive adjustments for filter/sort controls */
+@media (max-width: 768px) {
+    .filter-sort-controls {
+        flex-direction: column; /* Stack controls vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
 }

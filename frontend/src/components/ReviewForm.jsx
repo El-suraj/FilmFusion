@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import api from '../axiosConfig'; // Your configured axios instance
 import { useAuth } from '../contexts/AuthContext';
+import { useToast } from '../contexts/ToastContext'; // NEW: Import useToast
 
 const ReviewForm = ({ movieId, currentReview, onReviewSubmitted, onReviewDeleted }) => {
     const { isAuthenticated } = useAuth();
+    const { showToast } = useToast(); // NEW: Access showToast from context
+
     const [rating, setRating] = useState(currentReview?.rating || '');
     const [comment, setComment] = useState(currentReview?.comment || '');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(null);
+    // REMOVED: [error, setError] = useState(null);
+    // REMOVED: [successMessage, setSuccessMessage] = useState(null);
 
     // Update form fields if currentReview changes (e.g., when editing)
     useEffect(() => {
@@ -18,18 +21,18 @@ const ReviewForm = ({ movieId, currentReview, onReviewSubmitted, onReviewDeleted
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(null);
-        setSuccessMessage(null);
+        // REMOVED: setError(null);
+        // REMOVED: setSuccessMessage(null);
         setLoading(true);
 
         if (!isAuthenticated) {
-            setError('You must be logged in to submit a review.');
+            showToast('You must be logged in to submit a review.', 'info'); // NEW: Toast notification
             setLoading(false);
             return;
         }
 
         if (!rating || !comment) {
-            setError('Please provide both a rating and a comment.');
+            showToast('Please provide both a rating and a comment.', 'warning'); // NEW: Toast notification
             setLoading(false);
             return;
         }
@@ -39,19 +42,19 @@ const ReviewForm = ({ movieId, currentReview, onReviewSubmitted, onReviewDeleted
             if (currentReview) {
                 // Update existing review
                 response = await api.put(`/reviews/${currentReview._id}`, { rating, comment });
-                setSuccessMessage('Review updated successfully!');
+                showToast('Review updated successfully!', 'success'); // NEW: Toast notification
             } else {
                 // Create new review
                 response = await api.post('/reviews', { movieId, rating, comment });
-                setSuccessMessage('Review submitted successfully!');
+                showToast('Review submitted successfully!', 'success'); // NEW: Toast notification
             }
             onReviewSubmitted(response.data); // Pass the new/updated review to parent
             setRating(''); // Clear form after submission
             setComment('');
-            setError(null);
+            // REMOVED: setError(null);
         } catch (err) {
             console.error('Review submission error:', err.response?.data?.message || err.message);
-            setError(err.response?.data?.message || 'Failed to submit review.');
+            showToast(err.response?.data?.message || 'Failed to submit review.', 'error'); // NEW: Toast notification
         } finally {
             setLoading(false);
         }
@@ -59,7 +62,7 @@ const ReviewForm = ({ movieId, currentReview, onReviewSubmitted, onReviewDeleted
 
     const handleDelete = async () => {
         if (!isAuthenticated) {
-            alert('You must be logged in to delete a review.');
+            showToast('You must be logged in to delete a review.', 'info'); // NEW: Toast notification
             return;
         }
         if (!currentReview || !window.confirm('Are you sure you want to delete your review?')) {
@@ -67,18 +70,18 @@ const ReviewForm = ({ movieId, currentReview, onReviewSubmitted, onReviewDeleted
         }
 
         setLoading(true);
-        setError(null);
-        setSuccessMessage(null);
+        // REMOVED: setError(null);
+        // REMOVED: setSuccessMessage(null);
 
         try {
             await api.delete(`/reviews/${currentReview._id}`);
             onReviewDeleted(currentReview._id); // Notify parent review was deleted
-            setSuccessMessage('Review deleted successfully!');
+            showToast('Review deleted successfully!', 'info'); // NEW: Toast notification
             setRating(''); // Clear form
             setComment('');
         } catch (err) {
             console.error('Review deletion error:', err.response?.data?.message || err.message);
-            setError(err.response?.data?.message || 'Failed to delete review.');
+            showToast(err.response?.data?.message || 'Failed to delete review.', 'error'); // NEW: Toast notification
         } finally {
             setLoading(false);
         }
@@ -116,8 +119,8 @@ const ReviewForm = ({ movieId, currentReview, onReviewSubmitted, onReviewDeleted
                         disabled={loading}
                     ></textarea>
                 </div>
-                {error && <p className="error-message">{error}</p>}
-                {successMessage && <p className="success-message">{successMessage}</p>}
+                {/* REMOVED: {error && <p className="error-message">{error}</p>} */}
+                {/* REMOVED: {successMessage && <p className="success-message">{successMessage}</p>} */}
                 <button type="submit" disabled={loading} className="btn-update">
                     {loading ? 'Submitting...' : (currentReview ? 'Update Review' : 'Submit Review')}
                 </button>

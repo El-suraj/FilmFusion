@@ -6,6 +6,7 @@ const generateToken = require('../utils/generateToken'); // For generating new t
 const axios = require('axios');
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+const bcrypt = require('bcryptjs'); // <--- ADD THIS LINE
 
 // Helper to structure user data for sending to frontend
 const getUserDataForResponse = (user) => {

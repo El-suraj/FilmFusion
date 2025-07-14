@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Create a custom Axios instance
 const instance = axios.create({
-  baseURL: filmfusionsxyz.netlify.app, // Use your Vite env variable here
+  baseURL: 'https://filmfusionsxyz.netlify.app/', // Use your Vite env variable here
   headers: {
     "Content-Type": "application/json",
   },

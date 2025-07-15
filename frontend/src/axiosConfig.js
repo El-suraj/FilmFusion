@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Create a custom Axios instance
 const instance = axios.create({
-  baseURL: 'https://filmfusionxyz-api.onrender.com/', // Use your Vite env variable here
+  baseURL: import.meta.env.VITE_APP_API_URL , // Use your Vite env variable here
   headers: {
     "Content-Type": "application/json",
   },

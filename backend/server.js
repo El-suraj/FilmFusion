@@ -38,8 +38,8 @@ app.use((err, req, res, next) => {
 
 // Set up CORS
 const allowedOrigins = [
+  process.env.FRONTEND_URL, // Your deployed Netlify URL,
   "http://localhost:3000", // For local development
-  process.env.FRONTEND_URL, // Your deployed Netlify URL
 ];
 
 app.use(

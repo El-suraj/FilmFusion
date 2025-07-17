@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Create a custom Axios instance
 const instance = axios.create({
-  baseURL: "https://filmfusionxyz-api.onrender.com", // Use your Vite env variable here
+  baseURL: "https://filmfusionxyz-api.onrender.com/api", // Use your Vite env variable here
   withCredentials: true,
 });
 

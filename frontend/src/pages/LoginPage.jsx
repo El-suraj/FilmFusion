@@ -9,7 +9,7 @@ function LoginPage() {
   const { login } = useAuth(); // Get login function from AuthContext
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(''); // Clear previous errors
     try {

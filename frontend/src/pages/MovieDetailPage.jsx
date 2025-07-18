@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import api from '../axiosConfig';
 import { useAuth } from '../contexts/AuthContext';
 import ReviewForm from '../components/ReviewForm';
-import { useToast } from '../contexts/ToastContext';
+import { useToast}  from '../contexts/ToastContext.jsx';
 
 const MovieDetailPage = () => {
     const { id } = useParams();

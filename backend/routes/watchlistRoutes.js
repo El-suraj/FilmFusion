@@ -6,7 +6,6 @@ const axios = require('axios'); // For fetching movie details
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 
-
 // Helper to fetch movie details (optional, but useful for returning full movie data)
 const fetchMovieDetails = async (movieId) => {
     try {

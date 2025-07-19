@@ -6,7 +6,8 @@ const generateToken = require('../utils/generateToken'); // For generating new t
 const axios = require('axios');
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-const bcrypt = require('bcryptjs'); // <--- ADD THIS LINE
+const { registerUser, loginUser, getMe, updatePassword } = require('../controllers/userController');
+
 
 // Helper to structure user data for sending to frontend
 const getUserDataForResponse = (user) => {
@@ -117,5 +118,10 @@ router.post('/favorites', protect, async (req, res) => { /* ... */ });
 // @route   DELETE /api/users/favorites/:movieId
 // @access  Private
 router.delete('/favorites/:movieId', protect, async (req, res) => { /* ... */ });
+router.post('/register', registerUser);
+router.post('/login', loginUser);
+router.get('/me', protect, getMe); // NEW: Route to get current user's profile
+router.put('/me/password', protect, updatePassword); // NEW: Route to update password
+
 
 module.exports = router;

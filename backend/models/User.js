@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs'); // Make sure you have bcryptjs installed: npm install bcryptjs
 
@@ -18,13 +17,6 @@ const userSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-
-        // NEW FIELD: Array to store favorite movie IDs
-        // We'll store them as Numbers (TMDB movie IDs are typically numbers)
-        favoriteMovies: {
-            type: [Number], // An array of numbers
-            default: [],    // Default to an empty array
-        },
     },
     {
         timestamps: true, // Adds createdAt and updatedAt fields automatically
@@ -38,11 +30,11 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 
 // Middleware to hash password before saving (pre-save hook)
 userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) {
+    if (!this.isModified('password')) { // Only hash if password field is new or modified
         next();
     }
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    const salt = await bcrypt.genSalt(10); // Generate a salt
+    this.password = await bcrypt.hash(this.password, salt); // Hash the password
     next();
 });
 

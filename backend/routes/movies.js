@@ -7,7 +7,6 @@ const axios = require('axios');
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 
-
 // Helper to fetch TMDB genres (cache this in a real app)
 let tmdbGenres = [];
 const fetchTmdbGenres = async () => {
